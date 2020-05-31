@@ -35,6 +35,11 @@
 #define ID_FILE_EXIT                    32771
 #define ID_FILE_DECRYPTCARINFO          32772
 #define ID_FILE_ENCRYPTCARINFO          32773
+#define ID_PTH2TXT                      32773
+#define ID_TXT2PTH                      32774
+#define ID_CAR2INI                      32775
+#define ID_CAR2INI2                     32776
+#define ID_INI2CAR                      32776
 #define IDC_STATIC                      -1
 
 // Next default values for new objects

@@ -158,8 +158,11 @@
     <ClInclude Include="depak.h" />
     <ClInclude Include="filef.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="IniReader.h" />
     <ClInclude Include="mar.h" />
     <ClInclude Include="MR2Tool.h" />
+    <ClInclude Include="polcarfile.h" />
+    <ClInclude Include="pthfile.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -167,8 +170,11 @@
     <ClCompile Include="carfile.cpp" />
     <ClCompile Include="depak.cpp" />
     <ClCompile Include="filef.cpp" />
+    <ClCompile Include="IniReader.cpp" />
     <ClCompile Include="mar.cpp" />
     <ClCompile Include="MR2Tool.cpp" />
+    <ClCompile Include="polcarfile.cpp" />
+    <ClCompile Include="pthfile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MR2Tool.rc" />

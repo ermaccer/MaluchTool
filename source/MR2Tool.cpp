@@ -11,7 +11,8 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #include "depak.h"
 #include "carfile.h"
 #include "mar.h"
-#include <locale.h>
+#include "pthfile.h"
+#include "polcarfile.h"
 
 HINSTANCE hInst;                                
       
@@ -165,11 +166,46 @@ INT_PTR CALLBACK mr2main(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			SetWindowText(GetDlgItem(hDlg, MR2_ANAME), L"Idle");
 
 		}
+
+		if (wParam == ID_FILE_EXIT)
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
 		if (wParam == ID_FILE_DECRYPTCARINFO)
 		{
 			ECarFile* car = new ECarFile();
 			car->Process();
 		}
+
+		if (wParam == ID_PTH2TXT)
+		{
+			EPathFile* pth = new EPathFile();
+			if (pth->ProcessToText())
+				MessageBox(0, L"Finished!", L"Information", MB_ICONINFORMATION);
+		}
+
+		if (wParam == ID_TXT2PTH)
+		{
+			EPathFile* pth = new EPathFile();
+			if (pth->ProcessToPath())
+				MessageBox(0, L"Finished!", L"Information", MB_ICONINFORMATION);
+		}
+
+		if (wParam == ID_CAR2INI)
+		{
+			EPolCarFile* car = new EPolCarFile();
+			if (car->ProcessToINI())
+				MessageBox(0, L"Finished!", L"Information", MB_ICONINFORMATION);
+		}
+
+		if (wParam == ID_INI2CAR)
+		{
+			EPolCarFile* car = new EPolCarFile();
+			if (car->ProcessToCAR())
+				MessageBox(0, L"Finished!", L"Information", MB_ICONINFORMATION);
+		}
+
 
 		break;
 	}

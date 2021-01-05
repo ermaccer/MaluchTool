@@ -9,6 +9,9 @@ bool EPathFile::ProcessToText()
 	std::wstring inPath = SetPathFromButton(L"Path (*.pth)\0*.pth\0All Files (*.*)\0*.*\0", L"pth", 0);
 	std::ifstream pFile(inPath, std::ifstream::binary);
 
+	if (inPath.length() <= 0)
+		return false;
+
 	if (!pFile && inPath.length() > 0)
 	{
 		MessageBox(0, L"Failed to open input file!", 0, MB_ICONWARNING);
@@ -45,6 +48,12 @@ bool EPathFile::ProcessToText()
 bool EPathFile::ProcessToPath()
 {
 	std::wstring inPath = SetPathFromButton(L"Text (*.txt)\0*.txt\0All Files (*.*)\0*.*\0", L"txt", 0);
+
+
+	if (inPath.length() <= 0)
+		return false;
+
+
 	FILE* pFile = _wfopen(inPath.c_str(), L"rb");
 	std::vector<pth_point> points;
 	if (!pFile && inPath.length() > 0)

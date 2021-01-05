@@ -163,7 +163,7 @@ bool EMarFile::Process()
 
 		for (int z = 0; z < filesFound; z++)
 		{
-			wsprintf(progressBuffer, L"%d/%d", i, filesFound);
+			wsprintf(progressBuffer, L"%d/%d", i + 1, filesFound);
 			SetWindowText(*filename, progressBuffer);
 			SendMessage(*progressBar, PBM_STEPIT, 0, 0);
 
@@ -174,7 +174,6 @@ bool EMarFile::Process()
 			pFile.read(dataBuff.get(), sizes[z]);
 			oFile.write(dataBuff.get(), sizes[z]);
 		}
-		return true;
 
 	}
 	

@@ -13,6 +13,7 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #include "mar.h"
 #include "pthfile.h"
 #include "polcarfile.h"
+#include "tmfile.h"
 
 HINSTANCE hInst;                                
       
@@ -39,7 +40,7 @@ INT_PTR CALLBACK mr2main(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	HANDLE hicon = 0;
 	LRESULT GameResult;
 	int iWorkMode = 0, iGameIdentifier = 0;
-	const wchar_t* gameNames[SUPPORTED_GAMES] = { L"Pol Engine (.mar)",L"Blitz3D (.dat)" };
+	const wchar_t* gameNames[SUPPORTED_GAMES] = { L"Pol Engine (.mar)",L"Blitz3D (.dat)",L"TMReality (.tm)" };
 	switch (message)
 	{
 	case WM_INITDIALOG:
@@ -75,7 +76,7 @@ INT_PTR CALLBACK mr2main(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		else
 			EnableWindow(GetDlgItem(hDlg, MR2_M_B), 1);
 
-		if (iGameIdentifier == GAME_POL)
+		if (iGameIdentifier == GAME_POL || iGameIdentifier == GAME_TM)
 		{
 			EnableWindow(GetDlgItem(hDlg, MR2_ENC),0);
 		}
@@ -103,10 +104,12 @@ INT_PTR CALLBACK mr2main(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 				SetWindowText(InputPath, SetPathFromButton(L"Archive (*.dat)\0*.dat\0All Files (*.*)\0*.*\0", L"dat", hDlg).c_str());
 				if (iGameIdentifier == GAME_POL)
 				SetWindowText(InputPath, SetPathFromButton(L"Archive (*.mar)\0*.mar\0All Files (*.*)\0*.*\0", L"mar", hDlg).c_str());
+				if (iGameIdentifier == GAME_TM)
+					SetWindowText(InputPath, SetPathFromButton(L"Model package (*.tm)\0*.tm\0All Files (*.*)\0*.*\0", L"tm", hDlg).c_str());
 			}
 			if (iWorkMode == MODE_CREATE)
 			{
-				if (iGameIdentifier == GAME_POL)
+				if (iGameIdentifier == GAME_POL || iGameIdentifier == GAME_TM)
 					SetWindowText(InputPath, SetFolderFromButton(hDlg).c_str());
 			}
 
@@ -120,6 +123,8 @@ INT_PTR CALLBACK mr2main(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			{
 				if (iGameIdentifier == GAME_POL)
 					SetWindowText(OutputPath, SetSavePathFromButton(L"Archive (*.mar)\0*.mar\0All Files (*.*)\0*.*\0", L"mar", hDlg).c_str());
+				if (iGameIdentifier == GAME_TM)
+					SetWindowText(OutputPath, SetSavePathFromButton(L"Model package (*.tm)\0*.tm\0All Files (*.*)\0*.*\0", L"tm", hDlg).c_str());
 			}
 		}
 
@@ -158,6 +163,14 @@ INT_PTR CALLBACK mr2main(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 				mar->AttachFilenameText(&FileName);
 				mar->AttachProgressBar(&ProgressBar);
 				if (mar->Process())
+					MessageBox(0, L"Finished!", L"Information", MB_ICONINFORMATION);
+			}
+			if (iGameIdentifier == GAME_TM)
+			{
+				ETMFile* tm = new ETMFile(szInPath, szOutPath, iWorkMode);
+				tm->AttachFilenameText(&FileName);
+				tm->AttachProgressBar(&ProgressBar);
+				if (tm->Process())
 					MessageBox(0, L"Finished!", L"Information", MB_ICONINFORMATION);
 			}
 

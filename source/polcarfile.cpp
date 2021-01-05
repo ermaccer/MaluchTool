@@ -9,6 +9,11 @@
 bool EPolCarFile::ProcessToINI()
 {
 	std::wstring inPath = SetPathFromButton(L"Car Information (*.car)\0*.car\0All Files (*.*)\0*.*\0", L"car", 0);
+
+	if (inPath.length() <= 0)
+		return false;
+
+	
 	std::ifstream pFile(inPath, std::ifstream::binary);
 
 	if (!pFile && inPath.length() > 0)
@@ -100,6 +105,11 @@ bool EPolCarFile::ProcessToCAR()
 {
 
 	std::wstring inPath = SetPathFromButton(L"INI (*.ini)\0*.ini\0All Files (*.*)\0*.*\0", L"ini", 0);
+	
+
+	if (inPath.length() <= 0)
+		return false;
+
 	std::ifstream pFile(inPath, std::ifstream::binary);
 
 	if (!pFile && inPath.length() > 0)

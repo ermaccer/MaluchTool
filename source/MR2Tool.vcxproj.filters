@@ -51,6 +51,12 @@
     <ClInclude Include="IniReader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="tmfile.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+    <ClInclude Include="eObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MR2Tool.cpp">
@@ -76,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="IniReader.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tmfile.cpp">
+      <Filter>Header Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="eObj.cpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

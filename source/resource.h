@@ -32,13 +32,13 @@
 #define MR2_CLIST                       1014
 #define MR2_M_B                         1015
 #define MR2_M_E                         1016
+#define IDC_TAB1                        1017
 #define ID_FILE_EXIT                    32771
 #define ID_FILE_DECRYPTCARINFO          32772
 #define ID_FILE_ENCRYPTCARINFO          32773
 #define ID_PTH2TXT                      32773
 #define ID_TXT2PTH                      32774
 #define ID_CAR2INI                      32775
-#define ID_CAR2INI2                     32776
 #define ID_INI2CAR                      32776
 #define IDC_STATIC                      -1
 
@@ -49,7 +49,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32774
-#define _APS_NEXT_CONTROL_VALUE         1017
+#define _APS_NEXT_CONTROL_VALUE         1018
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif
